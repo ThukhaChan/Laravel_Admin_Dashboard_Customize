@@ -2,15 +2,14 @@
 @section('content')
 <div class="container mt-4">
   <style>
-    /* Custom table styles */
     .custom-table th, .custom-tbody td {
       text-align: center;
     }
     
     .custom-table th {
-      background-color: #256b0f; /* Bootstrap primary color */
+      background-color: #687265; 
       color: #fff;
-    }
+    } 
 
     .custom-tbody tbody{
       background-color: #700f0f;
@@ -29,24 +28,23 @@
             <div class="card-body">
               <div class="mb-3">
                 @if (session('edit'))
-              <div class=" alert alert-warning">
-               {{ session('edit') }}
+                 <div class=" alert alert-warning">
+                  {{ session('edit') }}
+                 </div>
+               @endif
+               @if (session('update'))
+                 <div class=" alert alert-success">
+                   {{ session('update') }}
+                 </div>
+               @endif
+               @if (session('delete'))
+                  <div class=" alert alert-danger">
+                     {{ session('delete') }}
+                  </div>
+               @endif
               </div>
-            @endif
-            @if (session('update'))
-              <div class=" alert alert-success">
-               {{ session('update') }}
-              </div>
-            @endif
-            @if (session('delete'))
-              <div class=" alert alert-danger">
-               {{ session('delete') }}
-              </div>
-            @endif
-              </div>
-                
             </div>
-                <table class="table">
+                <table class="table table-striped">
                     <thead class="custom-table">
                       <tr>
                         <th scope="col">#</th>
@@ -74,9 +72,9 @@
                                 <a href="{{ route('item.edit',$item->id) }}" class="btn btn-outline-warning me-1">
                                   <i class="fas fa-edit"></i>
                                 </a>
-                                <a href="{{ route('item.show',$item->id) }}" class="btn btn-outline-info me-1">
+                                {{-- <a href="{{ route('item.show',$item->id) }}" class="btn btn-outline-info me-1">
                                   <i class="fas fa-info"></i>
-                              </a>
+                                </a> --}}
                                 <form method="POST" action="{{ route('item.destroy',$item->id) }}" class="d-inline-block">
                                     @method('delete')
                                     @csrf

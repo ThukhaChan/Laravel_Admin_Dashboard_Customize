@@ -27,20 +27,20 @@
         <div class="col-md-8">
             <div class="card-body">
               @if (session('edit'))
-              <div class=" alert alert-warning">
-               {{ session('edit') }}
-              </div>
-            @endif
-            @if (session('update'))
-              <div class=" alert alert-success">
-               {{ session('update') }}
-              </div>
-            @endif
-            @if (session('delete'))
-              <div class=" alert alert-danger">
-               {{ session('delete') }}
-              </div>
-            @endif
+                <div class=" alert alert-warning">
+                 {{ session('edit') }}
+                </div>
+              @endif
+              @if (session('update'))
+                <div class=" alert alert-success">
+                 {{ session('update') }}
+                </div>
+              @endif
+              @if (session('delete'))
+                <div class=" alert alert-danger">
+                 {{ session('delete') }}
+                </div>
+              @endif
             </div>
                 <table class="table table-striped">
                     <thead class="custom-table">

@@ -12,7 +12,10 @@
                             @method('PUT')
                             <div class="mb-3 mt-3">
                                 <label  class="form-label">Name</label>
-                                <input type="text" name="name" class="form-control @error('name')is-invalid @enderror" value="{{ $category->name }}">
+                                <input type="text" name="name" class="form-control @error('name')is-invalid @enderror" value="{{ old('name',$category->name) }}">
+                                @error('name')
+                                    <div class="text-danget">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="mb-4">
                                 <a href="{{ route('category.index') }}" class="btn btn-outline-dark">Back</a>

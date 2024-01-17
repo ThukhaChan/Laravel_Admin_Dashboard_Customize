@@ -7,6 +7,11 @@
                 <div class="card-body m-3">
                     <div class="">
                         <h1 class="bg-gradient text-center">Item</h1>
+                        @if (session('success'))
+                          <div class=" alert alert-success">
+                          {{ session('success') }}
+                          </div>
+                        @endif
                         <form method="POST" action="{{ route('item.store') }}">
                             @csrf
                             <div class="mb-3 mt-3">

@@ -48,7 +48,7 @@ class ItemController extends Controller
         $item->category_id=$request->category_id;
         $item->expired_date=$request->expired_date;
         $item->save();
-        return redirect()->route('item.index');
+        return redirect()->route('item.create')->with('success','Item is Saving Successful');
     }
 
     /**
@@ -71,7 +71,7 @@ class ItemController extends Controller
     public function edit(Item $item)
     {
         $categories=Category::all();
-        return view('item.edit',compact('categories','item'));
+        return view('item.edit',compact('categories','item'))->with('edit','Item is Editing Successful');
     }
 
     /**
@@ -83,7 +83,12 @@ class ItemController extends Controller
      */
     public function update(UpdateItemRequest $request, Item $item)
     {
-        //
+        $item->name=$request->name;
+        $item->price=$request->price;
+        $item->category_id=$request->category_id;
+        $item->expired_date=$request->expired_date;
+        $item->update();
+        return redirect()->route('item.index')->with('update','Item is Updating Successful');
     }
 
     /**
@@ -94,6 +99,8 @@ class ItemController extends Controller
      */
     public function destroy(Item $item)
     {
-        //
+        if($item)
+        $item->delete();
+    return redirect()->route('item.index')->with('delete','Item is Deleting Successful');
     }
 }
