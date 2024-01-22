@@ -12,7 +12,7 @@
                           {{ session('success') }}
                           </div>
                         @endif
-                        <form method="POST" action="{{ route('item.store') }}">
+                        <form method="POST" action="{{ route('item.store') }}"enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3 mt-3">
                                 <label  class="form-label">Name<small class="text-danger">*</small></label>
@@ -50,6 +50,15 @@
                                 <label  class="form-label">Expired Date<small class="text-danger">*</small></label>
                                 <input type="date" name="expired_date" class="form-control @error('expired_date')is-invalid @enderror" value="{{ old('expired_date') }}">
                                 @error('expired_date')
+                                 <div class="text-danger">
+                                    *{{ $message }}
+                                 </div>
+                                @enderror
+                            </div>
+                            <div class="mb-3 mt-3">
+                                <label  class="form-label">Choose Image<small class="text-danger">*</small></label>
+                                <input type="file" class="form-control" name="image" accept="image/*">
+                                @error('image')
                                  <div class="text-danger">
                                     *{{ $message }}
                                  </div>

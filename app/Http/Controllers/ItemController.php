@@ -9,10 +9,10 @@ use App\Http\Requests\UpdateItemRequest;
 
 class ItemController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
     /**
      * Display a listing of the resource.
      *
@@ -21,7 +21,12 @@ class ItemController extends Controller
     public function index()
     {
         $items=item::all();
+        // $items = Item::where('id', '>',1)->paginate(15);
+        // $items = Item::where('id', '>', 1)->paginate(5
+        //     // $perPage = 7, $columns = ['*'], $pageName = 'items'
+        // );
          return view('item.index',compact('items'));
+
     }
     /**
      * Show the form for creating a new resource.
@@ -42,7 +47,11 @@ class ItemController extends Controller
      */
     public function store(StoreItemRequest $request)
     {
+        $image=$request->image;
+        $newName="gallery_".uniqid().".".$image->extension();
+        $image->storeAs("public/gallery",$newName);
         $item=new item();
+        $item->image=$newName;
         $item->name=$request->name;
         $item->price=$request->price;
         $item->category_id=$request->category_id;
@@ -82,7 +91,23 @@ class ItemController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateItemRequest $request, Item $item)
-    {
+    {  
+        if($request->image)
+        {
+            $image=$request->image;
+
+            $newName="gallery_".uniqid().".".$image->extension();
+            $image->storeAs("public/gallery",$newName);
+
+           
+            $item->name=$request->name;
+            $item->price=$request->price;
+            $item->category_id=$request->category_id;
+            $item->expired_date=$request->expired_date;
+            $item->image=$newName;
+            $item->update();
+            return redirect()->route('item.index')->with('update','Item is Updating Successful');
+        }
         $item->name=$request->name;
         $item->price=$request->price;
         $item->category_id=$request->category_id;

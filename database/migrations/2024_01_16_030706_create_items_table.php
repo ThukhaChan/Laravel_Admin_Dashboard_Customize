@@ -19,6 +19,7 @@ class CreateItemsTable extends Migration
             $table->string('name');
             $table->integer('price');
             $table->dateTime('expired_date');
+            $table->string('image'); 
             $table->timestamps();
         });
     }

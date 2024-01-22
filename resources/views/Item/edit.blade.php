@@ -7,7 +7,7 @@
                     <div class="card-body m-3">
                         <div class="">
                             <h1>item</h1>
-                            <form method="POST" action="{{ route('item.update', $item->id) }}">
+                            <form method="POST" action="{{ route('item.update', $item->id) }}" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="mb-3 mt-3">
@@ -50,6 +50,12 @@
                                     @error('expired_date')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
+                                </div>
+                                <div class="mb-3 mt-3">
+                                    <label  class="form-label">Choose Image<small class="text-danger">*</small></label>
+                                    <br>
+                                    <img style="width:50px; height:50px" src="{{ asset('storage/gallery/'.$item->image) }}">
+                                    <input type="file" class="form-control" name="image" accept="image/*">
                                 </div>
                         </div>
                         <div class="mb-4">

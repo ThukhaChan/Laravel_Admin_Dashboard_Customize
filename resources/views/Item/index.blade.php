@@ -52,6 +52,7 @@
                         <th scope="col">Category</th>
                         <th scope="col">Price</th>
                         <th scope="col">Expired Date</th>
+                        <th scope="col">Image</th>
                         <th scope="col" class="text-center">Action</th>
                       </tr>
                     </thead>
@@ -66,6 +67,8 @@
                         <td>{{ $item->category->name }}</td>
                         <td>{{ $item->price }}</td>
                         <td>{{ $item->expired_date }}</td>
+                        {{-- <td>{{ $item->image }}</td> --}}
+                        <td><img style="width:50px; height:50px" src="{{ asset('storage/gallery/'.$item->image) }}"></td>
                         <td>
                             <!-- font awesome & bootstrip icon -->
                             <div class="d-flex justify-content-center">
