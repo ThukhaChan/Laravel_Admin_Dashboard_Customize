@@ -54,6 +54,7 @@
                   <!--  read data from database  --> 
 
                     <tbody class="custom-tbody">
+                      {{ $categories->Links() }}
                       @foreach ($categories as $category )
                       <tr>
                         <th scope="row">{{ $loop->index+1 }}</th>

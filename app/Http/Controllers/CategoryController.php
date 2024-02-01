@@ -9,10 +9,10 @@ use PhpParser\Node\Stmt\Catch_;
 
 class CategoryController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -20,7 +20,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories=Category::all();
+        $categories=Category::latest()->paginate(2);
          return view('category.index',compact('categories'));
     }
 

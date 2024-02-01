@@ -7,8 +7,8 @@
                 <img  width="100px" height="100px" src="{{ asset('dist/img/cart.png') }}">
             </h1>
         <div class="row justify-content-center">
-            <div class="col-8">
-                <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col-md-8 col-sm-12">
+                <div class="row row-cols-2 row-cols-md-3 g-4">
                     @foreach ($data as $item)
                         <div class="col mt-5">
                             <div class="card" style="width:15rem">
@@ -28,7 +28,7 @@
                 </div>
             </div>
             {{--  Calculate --}}
-            <div class="col-4">
+            <div class="col-md-4 col-sm-12">
                 <div class="p-5 border mt-4">
 
                     <div class="row mt-5">
