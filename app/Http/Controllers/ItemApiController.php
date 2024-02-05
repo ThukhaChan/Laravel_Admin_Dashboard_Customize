@@ -44,6 +44,7 @@ class ItemApiController extends Controller
         $image=$request->image;
         $newName="gallery_".uniqid().".".$image->extension();
         $image->storeAs("public/gallery",$newName);
+        // $imageUrl = asset("storage/gallery/{$newName}");
         $item=new Item();
         $item->image=$newName;
         $item->name=$request->name;
@@ -51,7 +52,8 @@ class ItemApiController extends Controller
         $item->category_id=$request->category_id;
         $item->expired_date=$request->expired_date;
         $item->save();
-        return response()->json('Item is Saving Successful');
+       
+        return response()->json('Item saved successfully');
         }
         return  response()->json('Category Not Found');
     }
@@ -104,6 +106,7 @@ class ItemApiController extends Controller
             $image=$request->image;
             $newName="gallery_".uniqid().".".$image->extension();
             $image->storeAs("public/gallery",$newName);
+            // $imageUrl = asset("storage/gallery/{$newName}");
             $item->image=$newName;
             $item->name=$request->name;
             $item->price=$request->price;

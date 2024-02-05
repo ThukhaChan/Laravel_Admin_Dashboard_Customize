@@ -16,4 +16,7 @@ class Item extends Model
     //     $perPage = 5, $columns = ['*'], $pageName = 'items'
     // );
     }
+    public function getImageAttribute($value){
+        return asset('storage/gallery/'.$value);
+    }
 }
